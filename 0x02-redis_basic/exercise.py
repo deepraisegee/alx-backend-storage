@@ -20,13 +20,15 @@ class Cache:
         self._redis.set(name=key, value=data)
         return key
 
-    def get(self, key: str, fn: Callable) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int, float]:
         """get data from redis db"""
 
-        if not callable(fn):
-            raise
-
         data = self._redis.get(key)
+        if not fn:
+            if type(data) is str:
+                return self.get_str(key)
+            if type(data) is int:
+                return self.get_int(key)
 
         return fn(data)
 
