@@ -29,3 +29,13 @@ class Cache:
         data = self._redis.get(key)
 
         return fn(data)
+
+    def get_str(self, key: str) -> str:
+        """get string data"""
+        data = self._redis.get(key)
+        return str(data)
+
+    def get_int(self, key: str) -> int:
+        """get integer data"""
+        data = self._redis.get(key)
+        return int(data)
