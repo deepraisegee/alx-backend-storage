@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Redis module for cache"""
 
 import uuid
